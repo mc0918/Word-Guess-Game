@@ -1,4 +1,40 @@
 <!-- Guess Game start game with an eventhandler 
 var userguess = [] 
     use .push to add to the array 
-update userguess as users guess letters -->
+update userguess as users guess letters 
+
+We want:
+    text: text + content, .innerhtml, 
+    # of user's guesses: letters pushed to an empty array
+    computer's guess: .random pick from an array with words
+    if/else or switch/case
+    write a function to reset the game without refreshing page or clearing wins/losses
+        ex: letters, letters guessed, guesses left
+    write a function to update wins and losses
+    the function .INCLUDES is CASE-SENSITIVE so you have to use .TOLOWERCASE
+
+    Arrays: letters, letters guessed, guesses left (# - guesses)
+            maybe a random number generator to pull a random index from the array of potential answers for each game
+
+    Events: key press to start game 
+            read user's letter inputs
+        
+    Functions: 1. .includes to check if guess letter is included in word
+                   update relevant arrays, like push guessed letter to letters guessed array
+                   use .innerhtml to show letter guessed on screen
+                   loops for number of guesses 
+               2. tells you if you won or lost
+               3. resets everything except wins/losses
+
+Example: Lunch
+_ _ _ _ h
+
+[x, y, z]
+
+# guesses left: [5]
+
+# wins: 2
+
+# losses: 2
+
+-->
