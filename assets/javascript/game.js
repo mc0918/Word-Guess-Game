@@ -29,9 +29,10 @@ function guessUpdate() {
   //-------------------------------------------------------------------------------
   //Prints the hiddenWord on the screen
   var hiddenWordDiv = document.createElement("div");
+  hiddenWordDiv.id = "hidden-word";
   hiddenWordDiv.innerHTML = hiddenWord;
   document.getElementById("word-box").appendChild(hiddenWordDiv);
-
+  removeCommas();
   //-----------------------------------------------------------------------------
   //Starts game when first key is pressed
   document.onkeyup = function(event) {
@@ -58,6 +59,17 @@ function guessUpdate() {
         hiddenWord.splice(replace, 1, userInput);
         hiddenWordDiv.innerHTML = hiddenWord;
         document.getElementById("word-box").appendChild(hiddenWordDiv);
+        removeCommas();
+      }
+    }
+
+    //-----------------------------------------------------------------------------
+    //Checks to see if user has guessed all the letters
+    for (i = 0; i < hiddenWord.length; i++) {
+      if (hiddenWord.includes("_")) {
+        console.log("keep guessing!");
+      } else {
+        console.log("you win!");
       }
     }
 
@@ -76,21 +88,17 @@ function gameOver() {
   guessCounter = 0;
 }
 
-//Generates a random word
-// function getWord() {
-//   var random = Math.floor(Math.random() * wordsToGuess.length);
-//   var word = wordsToGuess[parseInt(random)];
-//   console.log(word);
-//   return word;
-// }
-// hiddenWord = [];
-// for (i = 0; i < word.length; i++) {
-//   hiddenWord[i] = "_";
-// }
-// console.log(word, hiddenWord);
-
-// var hiddenWordDiv = document.createElement("div");
-// hiddenWordDiv.innerHTML = hiddenWord;
-// document.getElementById("word-box").appendChild(hiddenWordDiv);
+//For aesthetic reasons removes commas between "_" characters after the rest of the code does the heavy lifting
+function removeCommas() {
+  var prettyDiv = document.getElementById("hidden-word");
+  console.log(prettyDiv);
+  var prettyDivText = document.getElementById("hidden-word").textContent;
+  console.log(prettyDivText);
+  //use regular expressions here so we can use the 'g' tag to search for all instances of commas
+  var newText = prettyDivText.replace(/,/g, " ");
+  console.log(newText);
+  document.getElementById("hidden-word").innerHTML = "";
+  document.getElementById("hidden-word").textContent = newText;
+}
 
 guessUpdate();
