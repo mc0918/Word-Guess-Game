@@ -12,13 +12,43 @@ var wordsToGuess = [
   "dripstone",
   "gypsum"
 ];
+var letterList = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z"
+];
+var random = "";
 
 //alert("press any key to begin");
 
 function guessUpdate() {
+  pickWord();
   //-------------------------------------------------------------------------
   //Picks a random word from the wordsToGuess array
-  var random = Math.floor(Math.random() * wordsToGuess.length);
+  //var random = Math.floor(Math.random() * wordsToGuess.length);
   var word = wordsToGuess[parseInt(random)];
   hiddenWord = [];
   for (i = 0; i < word.length; i++) {
@@ -42,15 +72,30 @@ function guessUpdate() {
     //if-else statement making sure repeated guesses don't count against score
     if (lettersGuessed.includes(userInput)) {
       console.log(userInput + " already guessed");
-    } else {
+    } else if (
+      word.indexOf(userInput) == -1 &&
+      letterList.includes(userInput)
+    ) {
       lettersGuessed.push(userInput);
+      document.getElementById("letters-guessed").innerHTML = lettersGuessed;
       console.log(lettersGuessed);
-      guessCounter += 1;
-      console.log("guessCounter = " + guessCounter);
+
+      remainingGuesses = remainingGuesses - 1;
+      document.getElementById("guess-counter").innerHTML =
+        "Remaining guesses: " + remainingGuesses;
+      console.log("remaining guesses: ", remainingGuesses);
+
+      if (remainingGuesses == "0") {
+        console.log("LOOZER");
+        losses += 1;
+        document.getElementById("losses").innerHTML = "Losses: " + losses;
+        //PUT GAME OVER FUNCTION/ RESET FUNCTION HERE
+        newGame();
+      }
     }
 
     //----------------------------------------------------------------------------
-    //If user guesses correctly, shows letter on screen instead of "_"
+    //If user guesses correctly, shows letter on screen instead of "_" and adds it to the array of letters guessed
     for (i = 0; i < word.length; i++) {
       if (userInput == word[i]) {
         console.log("word[i] is: " + word[i]);
@@ -64,28 +109,22 @@ function guessUpdate() {
     }
 
     //-----------------------------------------------------------------------------
-    //Checks to see if user has guessed all the letters
-    for (i = 0; i < hiddenWord.length; i++) {
-      if (hiddenWord.includes("_")) {
-        console.log("keep guessing!");
-      } else {
-        console.log("you win!");
-      }
-    }
-
-    //-----------------------------------------------------------------------------
-    //if-else statement measuring guesses remaining
-    if (guessCounter == 14) {
-      alert("you are out of guesses!");
-      gameOver();
+    //If user guesses all letters the win counter gets added to
+    if (hiddenWord.includes("_")) {
+      console.log("keep guessing!");
+    } else {
+      wins += 1;
+      document.getElementById("wins").innerHTML = "Wins: " + wins;
+      console.log("you win!");
+      //PUT FUNCTION TO REFRESH GAME HERE
+      newGame();
     }
   };
 }
 
-//Clears screen and arrays we don't want to keep full
-function gameOver() {
-  lettersGuessed.length = 0;
-  guessCounter = 0;
+//Picks a random word from the wordsToGuess array
+function pickWord() {
+  random = Math.floor(Math.random() * wordsToGuess.length);
 }
 
 //For aesthetic reasons removes commas between "_" characters after the rest of the code does the heavy lifting
@@ -97,8 +136,20 @@ function removeCommas() {
   //use regular expressions here so we can use the 'g' tag to search for all instances of commas
   var newText = prettyDivText.replace(/,/g, " ");
   console.log(newText);
-  document.getElementById("hidden-word").innerHTML = "";
+  //document.getElementById("hidden-word").innerHTML = ""; //probably not necessary
   document.getElementById("hidden-word").textContent = newText;
+}
+
+//Refreshes game without losing track of score
+function newGame() {
+  guessCounter = 0;
+  remainingGuesses = 12;
+  lettersGuessed = [];
+  document.getElementById("letters-guessed").innerHTML =
+    "Guesses remaining: 12";
+  document.getElementById("word-box").innerHTML = "";
+  document.getElementById("letters-guessed").innerHTML = "";
+  guessUpdate();
 }
 
 guessUpdate();

@@ -6,19 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Permanent+Marker"
+      rel="stylesheet"
+    />
     <title>Word Guess Game</title>
   </head>
   <body>
     <div>
       <header>
-        <h1>Word Game</h1>
+        <h1>Greetings, You Funky Little Person</h1>
       </header>
     </div>
 
     <div id="container">
       <div id="word-box"></div>
-      <div class="letters-guessed"></div>
-      <div class="wins-losses"></div>
+      <div id="letters-guessed"></div>
+      <div id="guess-counter">Guesses remaining: 12</div>
+      <div id="wins-losses">
+        <p id="wins">Wins: 0</p>
+        <p id="losses">Losses: 0</p>
+      </div>
     </div>
 
     <!-- .js file goes on the bottom so the html loads first no matter what -->
