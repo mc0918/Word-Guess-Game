@@ -76,7 +76,8 @@ function guessUpdate() {
       letterList.includes(userInput)
     ) {
       lettersGuessed.push(userInput);
-      document.getElementById("letters-guessed").innerHTML = lettersGuessed;
+      document.getElementById("letters-guessed").innerHTML =
+        "Letters guessed: " + lettersGuessed;
       console.log(lettersGuessed);
 
       remainingGuesses = remainingGuesses - 1;
