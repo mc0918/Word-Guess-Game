@@ -48,7 +48,6 @@ function guessUpdate() {
   pickWord();
   //-------------------------------------------------------------------------
   //Picks a random word from the wordsToGuess array
-  //var random = Math.floor(Math.random() * wordsToGuess.length);
   var word = wordsToGuess[parseInt(random)];
   hiddenWord = [];
   for (i = 0; i < word.length; i++) {
@@ -85,11 +84,12 @@ function guessUpdate() {
         "Remaining guesses: " + remainingGuesses;
       console.log("remaining guesses: ", remainingGuesses);
 
+      //Nested if statement that tracks remaining guesses since the variable only updates within the parent if statement
       if (remainingGuesses == "0") {
         console.log("LOOZER");
         losses += 1;
         document.getElementById("losses").innerHTML = "Losses: " + losses;
-        //PUT GAME OVER FUNCTION/ RESET FUNCTION HERE
+        alert("You Lose! The word was " + word);
         newGame();
       }
     }
@@ -116,7 +116,7 @@ function guessUpdate() {
       wins += 1;
       document.getElementById("wins").innerHTML = "Wins: " + wins;
       console.log("you win!");
-      //PUT FUNCTION TO REFRESH GAME HERE
+      alert("You win! You guessed " + word);
       newGame();
     }
   };
@@ -127,7 +127,7 @@ function pickWord() {
   random = Math.floor(Math.random() * wordsToGuess.length);
 }
 
-//For aesthetic reasons removes commas between "_" characters after the rest of the code does the heavy lifting
+//For aesthetic reasons, removes commas between "_" characters after the rest of the code does the heavy lifting
 function removeCommas() {
   var prettyDiv = document.getElementById("hidden-word");
   console.log(prettyDiv);

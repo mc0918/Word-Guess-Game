@@ -6,9 +6,44 @@
   font-size: 36;
 }
 
-h1 {
+header {
   font-weight: bold;
   font-size: 50px;
   text-align: center;
   font-family: "Permanent Marker", cursive;
+  background: papayawhip;
+}
+
+div {
+  text-align: center;
+  font-size: 50;
+}
+
+#content-wrap {
+  /* background-color: paleturquoise; */
+  background-image: url(../images/cave.png);
+  height: 600px;
+  width: 100%;
+}
+
+#container {
+  background-color: darksalmon;
+}
+
+#guess-counter {
+  background-color: lemonchiffon;
+}
+
+#word-box {
+  background-color: lightcoral;
+}
+
+#hidden-word {
+  background-color: orchid;
+  height: 50px;
+  width: 100%;
+}
+
+#wins-losses {
+  background-color: crimson;
 }
