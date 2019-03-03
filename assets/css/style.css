@@ -26,8 +26,8 @@ div {
   width: 100%;
 }
 
-#container {
-  background-color: darksalmon;
+#letters-guessed {
+  background-color: aquamarine;
 }
 
 #guess-counter {
