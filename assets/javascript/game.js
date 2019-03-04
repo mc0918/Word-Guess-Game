@@ -137,7 +137,6 @@ function removeCommas() {
   //use regular expressions here so we can use the 'g' tag to search for all instances of commas
   var newText = prettyDivText.replace(/,/g, " ");
   console.log(newText);
-  //document.getElementById("hidden-word").innerHTML = ""; //probably not necessary
   document.getElementById("hidden-word").textContent = newText;
 }
 
@@ -145,6 +144,7 @@ function removeCommas() {
 function newGame() {
   guessCounter = 0;
   remainingGuesses = 12;
+  document.getElementById("guess-counter").innerHTML = "Guesses remaining: 12";
   lettersGuessed = [];
   document.getElementById("letters-guessed").innerHTML =
     "Guesses remaining: 12";
